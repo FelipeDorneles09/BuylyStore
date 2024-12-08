@@ -116,7 +116,6 @@ const Navbar = () => {
                   userButtonAvatarBox: "h-10 w-10 rounded-full border",
                 },
               }}
-              onSignOut={handleSignOut} // Definindo o evento para logout
             />
           </div>
         ) : (
