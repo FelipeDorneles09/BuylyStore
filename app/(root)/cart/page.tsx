@@ -8,7 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 const Cart = () => {
-  const router = useRouter;
+  const router = useRouter();
   const user = useUser();
   const cart = useCart();
 
