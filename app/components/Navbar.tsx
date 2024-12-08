@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CircleUserRound, Menu, Search, ShoppingCart } from "lucide-react";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { UserButton, useUser, useClerk } from "@clerk/nextjs"; // Importando o useClerk
 import useCart from "@/lib/hooks/useCart";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -13,9 +13,16 @@ const Navbar = () => {
   const router = useRouter();
   const { user } = useUser();
   const cart = useCart();
+  const { signOut } = useClerk(); // Usando o hook useClerk
 
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [query, setQuery] = useState("");
+
+  // Função para realizar o logout
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/sign-in"); // Redireciona para a página de login após o logout
+  };
 
   return (
     <div className="sticky top-0 z-10 py-2 px-10 flex gap-2 justify-between items-center bg-white max-sm:px-2">
@@ -100,7 +107,17 @@ const Navbar = () => {
         )}
 
         {user ? (
-          <UserButton signOutUrl="/sign-in" />
+          // Usando o UserButton para exibir a foto do usuário
+          <div className="relative">
+            <UserButton
+              afterSignOutUrl="/sign-in" // URL de redirecionamento após o logout
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: "h-10 w-10 rounded-full border",
+                },
+              }}
+            />
+          </div>
         ) : (
           <Link href="/sign-in">
             <CircleUserRound />
