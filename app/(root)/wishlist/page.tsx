@@ -4,10 +4,11 @@ import Loader from "@/app/components/Loader";
 import ProductCard from "@/app/components/ProductCard";
 import { getProductsDetails } from "@/lib/actions/actions";
 import { useUser } from "@clerk/nextjs";
-import React, { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 const Wishlist = () => {
   const { user } = useUser();
+
   const [loading, setLoading] = useState(true);
   const [signedInUser, setSignedInUser] = useState<UserType | null>(null);
   const [wishlist, setWishlist] = useState<ProductType[]>([]);
@@ -19,7 +20,7 @@ const Wishlist = () => {
       setSignedInUser(data);
       setLoading(false);
     } catch (err) {
-      console.log("[users_GET]", err);
+      console.log("[users_GET", err);
     }
   };
 
@@ -40,6 +41,7 @@ const Wishlist = () => {
         return res;
       })
     );
+
     setWishlist(wishlistProducts);
     setLoading(false);
   };
@@ -60,6 +62,7 @@ const Wishlist = () => {
     <div className="px-10 py-5">
       <p className="text-heading3-bold my-10">Your Wishlist</p>
       {wishlist.length === 0 && <p>No items in your wishlist</p>}
+
       <div className="flex flex-wrap justify-center gap-16">
         {wishlist.map((product) => (
           <ProductCard
@@ -73,6 +76,6 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
-
 export const dynamic = "force-dynamic";
+
+export default Wishlist;
