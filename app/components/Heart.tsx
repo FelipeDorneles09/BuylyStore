@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
 import { useUser } from "@clerk/nextjs";
+import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Heart } from "lucide-react";
 
 interface HeartFavoriteProps {
   product: ProductType;
@@ -23,8 +22,8 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
       setLoading(true);
       const res = await fetch("/api/users");
       const data = await res.json();
-
       setIsLiked(data.wishlist.includes(product._id));
+      setLoading(false);
     } catch (err) {
       console.log("[users_GET]", err);
     }
@@ -45,7 +44,6 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
         router.push("/sign-in");
         return;
       } else {
-        setLoading(true);
         const res = await fetch("/api/users/wishlist", {
           method: "POST",
           body: JSON.stringify({ productId: product._id }),
@@ -58,6 +56,7 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
       console.log("[wishlist_POST]", err);
     }
   };
+
   return (
     <button onClick={handleLike}>
       <Heart fill={`${isLiked ? "red" : "white"}`} />
