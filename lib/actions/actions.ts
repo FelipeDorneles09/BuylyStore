@@ -63,3 +63,27 @@ export const getRelatedProducts = async (productId: string) => {
   );
   return await relatedProducts.json();
 };
+
+export const getCategories = async () => {
+  const categories = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/categories`,
+    { cache: "no-store" }
+  );
+  return await categories.json();
+};
+
+export const getCategoriesDetails = async (categoryId: string) => {
+  const category = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/categories/${categoryId}`,
+    { cache: "no-store" }
+  );
+  return await category.json();
+};
+
+export const getAboutUs = async () => {
+  const aboutus = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/aboutus`,
+    { cache: "no-store" }
+  );
+  return await aboutus.json();
+};
