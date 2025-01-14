@@ -5,14 +5,12 @@ import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-// Defina a execução como "edge", garantindo que a função será executada no lado do servidor
-export const runtime = "edge";
-
 export const GET = async (req: NextRequest) => {
   try {
     const { userId } = auth();
 
     if (!userId) {
+      console.log("User ID not found in auth()");
       return new NextResponse(JSON.stringify({ message: "Unauthorized" }), {
         status: 401,
       });

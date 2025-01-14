@@ -34,7 +34,6 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const fetchedCategories = await getCategories();
-      console.log("Fetched Categories:", fetchedCategories); // Adicionando o console.log para verificar os dados
       setCategories(fetchedCategories);
     };
     fetchCategories();
