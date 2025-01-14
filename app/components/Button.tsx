@@ -16,7 +16,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   // Classes de estilo básicas
-  const baseClasses = "px-4 py-2 rounded focus:outline-none focus:ring-0"; // Remover o anel de foco
+  const baseClasses = "px-4 py-2 rounded focus:outline-none focus:ring";
   const variantClasses =
     variant === "contained"
       ? "bg-blue-600 text-white hover:bg-blue-700"
@@ -28,13 +28,15 @@ const Button = ({
       className={`${baseClasses} ${variantClasses}`}
       {...props}
     >
-<<<<<<< HEAD
       <span className="flex items-center">{children}</span>
+<<<<<<< HEAD
 =======
       <span className="flex items-center">
         {children}
       </span>
 >>>>>>> 0da712d (Update Button.tsx)
+=======
+>>>>>>> 1aa9879 (attttt)
     </button>
   );
 };
