@@ -28,7 +28,13 @@ const Button = ({
       className={`${baseClasses} ${variantClasses}`}
       {...props}
     >
+<<<<<<< HEAD
       <span className="flex items-center">{children}</span>
+=======
+      <span className="flex items-center">
+        {children}
+      </span>
+>>>>>>> 0da712d (Update Button.tsx)
     </button>
   );
 };
