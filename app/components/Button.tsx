@@ -1,4 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
+
+// Tipando as props do componente Button
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  type?: "button" | "submit" | "reset"; // Tipando o tipo do botão
+  variant?: "default" | "contained"; // Tipando o variant
+  endIcon?: ReactNode; // endIcon pode ser qualquer coisa renderizável
+  children: ReactNode; // children é um ReactNode
+}
 
 const Button = ({
   type = "button",
@@ -6,7 +14,7 @@ const Button = ({
   endIcon,
   children,
   ...props
-}) => {
+}: ButtonProps) => {
   // Classes de estilo básicas
   const baseClasses = "px-4 py-2 rounded focus:outline-none focus:ring";
   const variantClasses =

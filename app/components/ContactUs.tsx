@@ -12,7 +12,10 @@ const ContactUs = () => {
     message: "",
   });
 
-  const handleChange = (e) => {
+  // Tipagem explícita para o evento de mudança
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -20,7 +23,8 @@ const ContactUs = () => {
     }));
   };
 
-  const sendEmail = (e) => {
+  // Tipagem explícita para o evento de envio de formulário
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const serviceKey = process.env.NEXT_PUBLIC_EMAIL_SERVICE_KEY;
@@ -33,7 +37,7 @@ const ContactUs = () => {
     }
 
     emailjs
-      .sendForm(serviceKey, templateKey, e.target, publicKey)
+      .sendForm(serviceKey, templateKey, e.target as HTMLFormElement, publicKey)
       .then(() => {
         setIsSent(true);
         setFormData({ email_from: "", message: "", name: "" });
@@ -168,7 +172,7 @@ const ContactUs = () => {
               name="message"
               id="message"
               placeholder="Write your message here..."
-              rows="4"
+              rows={4}
               value={formData.message}
               onChange={handleChange}
               className="mt-1 p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm resize-none"
@@ -182,6 +186,16 @@ const ContactUs = () => {
                 isSent ? "bg-green-500" : "bg-blue-500 hover:bg-blue-600"
               } text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-200`}
               disabled={isSent}
+              endIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0Zm0 14A6 6 0 1 1 14 8 6 6 0 0 1 8 14Z" />
+                </svg>
+              } // Exemplo de ícone
             >
               {isSent ? "Sent" : "Send"}
             </Button>
