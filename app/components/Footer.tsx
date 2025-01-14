@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="pt-12">
       <footer className="bg-black px-4 md:px-16 lg:px-28 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6">
           <div>
             <h2 className="text-body-bold mb-4 text-white">About Us</h2>
             <p className="text-gray-300">
@@ -49,13 +49,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <FaTwitter className="text-sky-500 mb-2 text-heading4-bold" />
+                <FaTwitter className="text-blue-500 mb-2 text-heading4-bold" />
                 <a href="" className="hover:underline text-gray-300">
                   Twitter
                 </a>
               </li>
               <li>
-                <FaInstagram className="text-orange-500 mb-2 text-heading4-bold" />
+                <FaInstagram className="text-blue-500 mb-2 text-heading4-bold" />
                 <a href="" className="hover:underline text-gray-300">
                   Instagram
                 </a>

@@ -16,8 +16,51 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
 
   const cart = useCart();
 
+  const [rating, setRating] = useState<number>(0);
+  const [comment, setComment] = useState<string>("");
+  const [buttonState, setButtonState] = useState<
+    "default" | "submitting" | "submitted" | "failed"
+  >("default");
+
+  const submitReview = async () => {
+    setButtonState("submitting");
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: productInfo._id,
+          rating,
+          comment,
+        }),
+      });
+
+      if (res.ok) {
+        setButtonState("submitted");
+        setTimeout(() => {
+          setButtonState("default");
+          setRating(0);
+          setComment("");
+        }, 3000);
+      } else {
+        setButtonState("failed");
+        setTimeout(() => {
+          setButtonState("default");
+        }, 3000);
+      }
+    } catch (err) {
+      console.error(err);
+      setButtonState("failed");
+      setTimeout(() => {
+        setButtonState("default");
+      }, 3000);
+    }
+  };
+
   return (
-    <div className="max-w-[400px] flex flex-col gap-4">
+    <div className="max-w-[450px] lg:max-w-[500px] flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <p className="text-heading3-bold">{productInfo.title}</p>
         <HeartFavorite product={productInfo} />
@@ -25,7 +68,9 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
 
       <div className="flex gap-2">
         <p className="text-base-medium text-grey-2">Category: </p>
-        <p className="text-base-bold">{productInfo.category}</p>
+        <p className="text-base-bold">
+          {productInfo.categories[0]?.title || "Sem Categoria"}
+        </p>
       </div>
 
       <p className="text-heading3-bold">$ {productInfo.price}</p>
@@ -73,12 +118,12 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
         <p className="text-base-medium text-grey-2">Quantity:</p>
         <div className="flex gap-4 items-center">
           <MinusCircle
-            className="hover:text-red-1 cursor-pointer"
+            className="hover:text-blue-500 cursor-pointer"
             onClick={() => quantity > 1 && setQuantity(quantity - 1)}
           />
           <p className="text-body-bold">{quantity}</p>
           <PlusCircle
-            className="hover:text-red-1 cursor-pointer"
+            className="hover:text-blue-500 cursor-pointer"
             onClick={() => setQuantity(quantity + 1)}
           />
         </div>
@@ -97,6 +142,39 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       >
         Add to Cart
       </button>
+      <div className="mt-8">
+        <p className="text-heading3-bold">Leave a Review</p>
+        <div className="flex gap-2 mt-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              className={`text-2xl ${rating >= star ? "text-blue-500" : "text-gray-400"}`}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </button>
+          ))}
+        </div>
+        <textarea
+          className="w-full border p-2 rounded-lg mt-2 resize-none h-20"
+          placeholder="Write your comment here..."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <button
+          className={`mt-4 ${buttonState === "submitting" ? "bg-gray-400" : buttonState === "submitted" ? "bg-blue-500" : buttonState === "failed" ? "bg-red-500" : "bg-black"} text-white px-4 py-2 rounded-lg`}
+          onClick={submitReview}
+          disabled={buttonState === "submitting"}
+        >
+          {buttonState === "submitting"
+            ? "Submitting"
+            : buttonState === "submitted"
+              ? "Submitted"
+              : buttonState === "failed"
+                ? "Try Again"
+                : "Submit Review"}
+        </button>
+      </div>
     </div>
   );
 };

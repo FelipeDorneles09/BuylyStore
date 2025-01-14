@@ -6,13 +6,13 @@ import { useState } from "react";
 const Gallery = ({ productMedia }: { productMedia: string[] }) => {
   const [mainImage, setMainImage] = useState(productMedia[0]);
   return (
-    <div className="flex flex-col gap-3 max-w-[500px]">
+    <div className="flex flex-col gap-3 max-w-[600px]">
       <Image
         src={mainImage}
-        width={500}
-        height={500}
+        width={600}
+        height={600}
         alt="product"
-        className="w-96 h-96 rounded-lg shadow-lg object-cover"
+        className="w-[28rem] h-[28rem] lg:h-3/4 lg:w-full rounded-lg shadow-lg object-cover"
       />
       <div className="flex gap-2 overflow-auto tailwind-scrollbar-hide">
         {productMedia.map((image, index) => (

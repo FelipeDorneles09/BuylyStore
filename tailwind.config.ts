@@ -92,9 +92,12 @@ const config: Config = {
         "grey-1": "#F7F7F7",
         "grey-2": "#8A8A8A",
       },
+      screens: {
+        "xl-plus": "1149px", // breakpoint customizado
+        "lg-sm": "851px",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 };
 export default config;
-

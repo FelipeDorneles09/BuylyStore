@@ -7,3 +7,87 @@ body,
 :root {
   height: 100%;
 }
+
+.card-slider-2 .swiper-title {
+  color: #202223;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.card-slider-2 .swiper-title:after {
+  content: "";
+  width: 100%;
+  max-width: 3rem;
+  background-color: #202223;
+  margin: 1rem auto;
+  height: 0.15rem;
+  display: block;
+}
+
+.card-slider-2 .swiper-slide {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  transition:
+    box-shadow 0.15s ease-out,
+    transform 0.3s ease;
+}
+
+.card-slider-2 .swiper-button-prev,
+.card-slider-2 .swiper-button-next {
+  color: #000;
+  background-color: #ffffff50;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.card-slider-2 .swiper-button-prev:hover,
+.card-slider-2 .swiper-button-next:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.card-slider-2 .swiper-button-prev {
+  left: 0;
+}
+
+.card-slider-2 .swiper-button-next {
+  right: 0;
+}
+
+.bg-transparent {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-transparent:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.font-oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+.bg-transparent-2:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.bg-transparent-2 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.swiper-slide {
+  flex-direction: row;
+}

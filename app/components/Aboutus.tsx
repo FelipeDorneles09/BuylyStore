@@ -7,7 +7,7 @@ const AboutUs = async () => {
   return (
     <>
       {aboutus.map((about: AboutUsType) => (
-        <div className="p-10 flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-20 max-w-7xl mx-auto">
+        <div className="px-10 md:py-24 py-10 flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-20 max-w-7xl mx-auto">
           <div className="flex flex-col items-start text-left md:w-1/2">
             <h1 className="text-heading1-bold md:text-4xl font-bold mb-8">
               {about.title}

@@ -6,8 +6,8 @@ import React from "react";
 const Categories = async () => {
   const categories = await getCategories();
   return (
-    <div className="flex flex-col items-center gap-10 py-8 px-5">
-      <div>
+    <div className="flex flex-col items-center gap-4 md:gap-10 my-16 mx-5">
+      <div className="flex flex-col gap-1">
         <p className="text-[12px] text-center">Shop by categories</p>
         <p className="text-heading1-bold font-bold text-center">Categories</p>
       </div>

@@ -1,7 +1,5 @@
-import ProductCard from "@/app/components/ProductCard";
+import FilteredProductList from "@/app/components/FilteredProductList";
 import { getCollectionsDetails } from "@/lib/actions/actions";
-import Image from "next/image";
-import React from "react";
 
 const CollectionDetails = async ({
   params,
@@ -11,25 +9,22 @@ const CollectionDetails = async ({
   const collectionDetails = await getCollectionsDetails(params.collectionId);
 
   return (
-    <div className="px-10 py-5 flex flex-col items-center gap-8">
-      <Image
-        src={collectionDetails.image}
-        width={1500}
-        height={1000}
-        alt="collection"
-        className="w-full h-[400px] object-cover rounded-xl"
-      />
-      <p className="text-heading3-bold text-grey-2">
-        {collectionDetails.title}
-      </p>
-      <p className="text-body-normal text-grey-2 text-center max-w-[900px]">
-        {collectionDetails.description}
-      </p>
-      <div className="flex flex-wrap gap-16 justify-center">
-        {collectionDetails.products.map((product: ProductType) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+    <div className="px-4 sm:px-6 md:px-12 lg:px-16 xl:px- py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col items-start gap-8">
+      {/* Título e descrição */}
+      <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+        <div className="flex flex-col gap-2">
+          <p className="text-heading1-bold">{collectionDetails.title}</p>
+          <p className="text-[16px] text-grey-2 w-[85%]">
+            {collectionDetails.description}
+          </p>
+          <p className="text-body-medium mt-2 sm:mt-0">
+            {collectionDetails.products.length} produto(s)
+          </p>
+        </div>
       </div>
+
+      {/* Componente cliente com filtro */}
+      <FilteredProductList products={collectionDetails.products} />
     </div>
   );
 };

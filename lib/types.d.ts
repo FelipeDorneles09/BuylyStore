@@ -10,7 +10,7 @@ type ProductType = {
   title: string;
   description: string;
   media: [string];
-  category: string;
+  categories: CategoryType[];
   collections: [string];
   tags: [string];
   price: number;

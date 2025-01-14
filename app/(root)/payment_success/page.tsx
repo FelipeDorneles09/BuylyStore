@@ -12,7 +12,7 @@ const SuccessfullPayment = () => {
   }, []);
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-5 ">
-      <p className="text-heading4-bold text-red-1">Sucessful Payment</p>
+      <p className="text-heading4-bold text-blue-500">Sucessful Payment</p>
       <p>Thank you for your purchase</p>
       <Link
         href="/"

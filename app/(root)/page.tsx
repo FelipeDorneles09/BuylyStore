@@ -2,23 +2,26 @@ import Image from "next/image";
 
 import Collections from "../components/Collections";
 import ProductList from "../components/ProductList";
-import Categories from "../components/Categories";
+import CategoriesDisplay from "../components/CategoriesDisplay";
 import AboutUs from "../components/Aboutus";
+import Trust from "../components/Trust";
+import ContactUs from "../components/ContactUs";
+import Slider from "../components/Slider";
+import { SliderServer } from "../components/SliderServer";
+import CategoriesLoader from "../components/CategoriesLoader";
+import Info from "../components/Info";
 
-export default function Home() {
+export default async function Home() {
+  const collections = await SliderServer(); // Busca as coleções no Server Component
   return (
     <>
-      <Image
-        src="/banner.png"
-        alt="banner"
-        width={2000}
-        height={1000}
-        className="w-screen"
-      />
-      <Collections />
-      <Categories />
+      <Slider collections={collections} />
+      <Info />
+      <CategoriesLoader />
       <ProductList />
       <AboutUs />
+      <Trust />
+      <ContactUs />
     </>
   );
 }

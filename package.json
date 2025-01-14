@@ -10,17 +10,20 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.2",
+    "@emailjs/browser": "^4.4.1",
+    "@react-email/components": "0.0.31",
     "@stripe/stripe-js": "^4.8.0",
+    "axios": "^1.7.9",
     "lucide-react": "^0.452.0",
     "mongoose": "^8.7.1",
     "next": "14.2.15",
     "prettier": "^3.3.3",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.4.0",
     "stripe": "^14.18.0",
-    "swiper": "^11.1.15",
+    "swiper": "^11.2.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "zustand": "^5.0.0-rc.2"
   },
@@ -29,6 +32,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
+    "react-email": "3.0.4",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
