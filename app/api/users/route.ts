@@ -1,8 +1,12 @@
+// app/api/users/route.ts
+
 import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
-
 import { NextRequest, NextResponse } from "next/server";
+
+// Defina a execução como "edge", garantindo que a função será executada no lado do servidor
+export const runtime = "edge";
 
 export const GET = async (req: NextRequest) => {
   try {
@@ -18,7 +22,7 @@ export const GET = async (req: NextRequest) => {
 
     let user = await User.findOne({ clerkId: userId });
 
-    // When the user sign-in for the 1st, immediately we will create a new user for them
+    // Quando o usuário fizer login pela primeira vez, criamos um novo usuário para ele
     if (!user) {
       user = await User.create({ clerkId: userId });
       await user.save();
