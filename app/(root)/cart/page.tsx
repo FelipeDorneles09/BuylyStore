@@ -81,8 +81,8 @@ const Cart = () => {
                     onClick={() =>
                       cart.decreaseQuantity(
                         cartItem.item._id,
-                        cartItem.color,
-                        cartItem.size
+                        cartItem.color ?? "defaultColor",
+                        cartItem.size ?? "defaultSize"
                       )
                     }
                   />
@@ -92,8 +92,8 @@ const Cart = () => {
                     onClick={() =>
                       cart.increaseQuantity(
                         cartItem.item._id,
-                        cartItem.color,
-                        cartItem.size
+                        cartItem.color ?? "defaultColor",
+                        cartItem.size ?? "defaultSize"
                       )
                     }
                   />
