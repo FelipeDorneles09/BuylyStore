@@ -17,7 +17,7 @@ const ProductSlider = ({ products }: ProductSliderProps) => {
       const width = window.innerWidth;
       if (width < 768) {
         setItemsPerView(2);
-        setOffset(-49);
+        setOffset(-50);
       } else if (width < 1024) {
         setItemsPerView(2); // 2 produtos para dispositivos menores
         setOffset(-50); // Ajuste de offset para dispositivos menores

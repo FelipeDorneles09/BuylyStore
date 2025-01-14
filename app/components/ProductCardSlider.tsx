@@ -25,8 +25,10 @@ const ProductCardSlider = ({ product }: ProductCardProps) => {
       </div>
 
       {/* Informações do Produto */}
-      <div className="flex flex-col justify-between px-[0.26rem] md:gap-4 py-10 md:h-1/3 h-[1/2]">
-        <h3 className="text-heading4-bold text-center">{product.title}</h3>
+      <div className="flex flex-col justify-between  md:gap-4 py-10 md:h-1/3 h-1/2">
+        <h3 className="sm:text-heading4-bold text-[17px] font-semibold text-center">
+          {product.title}
+        </h3>
 
         {/* Preço e Parcelas */}
         <div className="flex flex-col items-center">
