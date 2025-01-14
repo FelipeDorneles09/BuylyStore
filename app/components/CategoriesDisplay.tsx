@@ -7,7 +7,19 @@ import Swiper from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const CategoriesDisplay = ({ categories }) => {
+// Tipando a prop categories
+interface CategoryType {
+  _id: string;
+  title: string;
+  image: string;
+  createdAt: string; // Definindo a data de criação
+}
+
+interface CategoriesDisplayProps {
+  categories: CategoryType[];
+}
+
+const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
   const [isSingleRow, setIsSingleRow] = useState(false);
   const swiperRef = useRef<Swiper | null>(null);
 
@@ -70,7 +82,7 @@ const CategoriesDisplay = ({ categories }) => {
 
   // Ordenar as categorias de forma crescente (mais antigas primeiro)
   const sortedCategories = categories.sort(
-    (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   );
 
   // Exibir as 4 primeiras categorias ordenadas
