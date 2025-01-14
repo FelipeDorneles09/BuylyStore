@@ -95,6 +95,7 @@ const config: Config = {
       screens: {
         "xl-plus": "1149px", // breakpoint customizado
         "lg-sm": "851px",
+        "sm-plus": "580px",
       },
     },
   },

@@ -14,6 +14,9 @@ const FeatureSection: React.FC = () => {
         delay: 3000,
       },
       breakpoints: {
+        350: {
+          slidesPerView: 2,
+        },
         580: {
           slidesPerView: 2,
         },
@@ -38,14 +41,14 @@ const FeatureSection: React.FC = () => {
   return (
     <section className="bg-black text-white py-4 md:py-8 " id="features">
       <div id="feature-swiper" className="swiper max-w-screen-xl mx-auto">
-        <div className="swiper-wrapper pl-8 md:pl-8">
-          <div className="swiper-slide flex items-center justify-center gap-5 p-2 md:ml-2 lg:ml-8">
+        <div className="swiper-wrapper max-sm-plus:pl-2 md:pl-8">
+          <div className="swiper-slide flex items-center justify-center gap-5 p-2 max-sm-plus:ml-0 ml-4 lg:ml-8">
             <div className="flex items-center gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="2.3em"
                 viewBox="0 0 576 512"
-                className="text-white"
+                className="text-white max-sm-plus:h-[1.4rem]"
               >
                 <path
                   fill="currentColor"
@@ -53,10 +56,12 @@ const FeatureSection: React.FC = () => {
                 />
               </svg>
               <div className="flex flex-col font-semibold">
-                <span className="font-semibold text-[17px]">
+                <span className="max-sm-plus:text-[13px] font-semibold text-[17px]">
                   Diversas formas
                 </span>
-                <span className="text-[17px]">De pagamento</span>
+                <span className="max-sm-plus:text-[13px] text-[17px]">
+                  De pagamento
+                </span>
               </div>
             </div>
           </div>
@@ -67,7 +72,7 @@ const FeatureSection: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 height="2.3em"
                 viewBox="0 0 384 512"
-                className="text-white"
+                className="text-white max-sm-plus:h-[1.4rem]"
               >
                 <path
                   fill="currentColor"
@@ -75,8 +80,12 @@ const FeatureSection: React.FC = () => {
                 />
               </svg>
               <div className="flex flex-col font-semibold">
-                <span className=" text-[17px]">5% de desconto</span>
-                <span className="text-[17px]">Nas compras via pix</span>
+                <span className="max-sm-plus:text-[13px] text-[17px]">
+                  5% de desconto
+                </span>
+                <span className="max-sm-plus:text-[13px] text-[17px]">
+                  Nas compras via pix
+                </span>
               </div>
             </div>
           </div>
@@ -87,7 +96,7 @@ const FeatureSection: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 height="2.3em"
                 viewBox="0 0 448 512"
-                className="text-white"
+                className="text-white max-sm-plus:h-[1.4rem]"
               >
                 <path
                   fill="currentColor"
@@ -95,10 +104,12 @@ const FeatureSection: React.FC = () => {
                 />
               </svg>
               <div className="flex flex-col font-semibold">
-                <span className="font-semibold text-[17px]">
+                <span className="font-semibold max-sm-plus:text-[13px] text-[17px]">
                   Compras simples
                 </span>
-                <span className="text-[17px]">E rápidas</span>
+                <span className="max-sm-plus:text-[13px] text-[17px]">
+                  E rápidas
+                </span>
               </div>
             </div>
           </div>

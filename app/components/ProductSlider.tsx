@@ -9,29 +9,24 @@ interface ProductSliderProps {
 
 const ProductSlider = ({ products }: ProductSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerView, setItemsPerView] = useState(4);
-  const [offset, setOffset] = useState(-50); // Valor de offset padrão
+  const [itemsPerView, setItemsPerView] = useState(4); // Número inicial de itens por visualização
 
   useEffect(() => {
     const updateItemsPerView = () => {
       const width = window.innerWidth;
-      if (width < 768) {
-        setItemsPerView(2);
-        setOffset(-50);
+      if (width < 580) {
+        setItemsPerView(1); // 1 produto por vez em telas muito pequenas
+      } else if (width < 768) {
+        setItemsPerView(2); // 2 produtos por vez em telas pequenas
       } else if (width < 1024) {
-        setItemsPerView(2); // 2 produtos para dispositivos menores
-        setOffset(-50); // Ajuste de offset para dispositivos menores
-      } else if (width < 1440) {
-        setItemsPerView(3); // 3 produtos para dispositivos médios
-        setOffset(-50); // Offset padrão
+        setItemsPerView(3); // 3 produtos por vez em telas médias
       } else {
-        setItemsPerView(4); // 4 produtos para dispositivos maiores
-        setOffset(-50); // Offset padrão
+        setItemsPerView(4); // 4 produtos por vez em telas grandes
       }
     };
 
     updateItemsPerView(); // Chama na inicialização
-    window.addEventListener("resize", updateItemsPerView); // Adiciona o ouvinte de evento para resize
+    window.addEventListener("resize", updateItemsPerView); // Atualiza ao redimensionar a tela
 
     return () => window.removeEventListener("resize", updateItemsPerView); // Limpeza do evento
   }, []);
@@ -55,7 +50,7 @@ const ProductSlider = ({ products }: ProductSliderProps) => {
   return (
     <div
       id="card-slider-2_1731412961206_27"
-      className="card-slider-2 w-full h-[50vh] mx-auto mt-8 pb-12"
+      className="card-slider-2 w-full h-[50vh] mx-auto mt-8 mb-12"
     >
       <div className="relative flex items-center h-full overflow-hidden">
         <button
@@ -68,19 +63,17 @@ const ProductSlider = ({ products }: ProductSliderProps) => {
 
         <div className="swiper-wrapper flex overflow-hidden h-full">
           <div
-            className="flex transition-transform duration-300 h-full gap-x-4"
+            className="flex transition-transform duration-300 h-full"
             style={{
-              transform: `translateX(calc(-${currentIndex * (100 / itemsPerView)}% + ${
-                (100 / itemsPerView) * (itemsPerView / 2) + offset
-              }%))`,
+              transform: `translateX(-${(currentIndex * 100) / itemsPerView}%)`,
               width: `${(100 / itemsPerView) * products.length}%`,
             }}
           >
             {products.map((product) => (
               <div
                 key={product._id}
-                className="swiper-slide flex-shrink-0 h-full md:pl-4"
-                style={{ width: `calc(${100 / itemsPerView}% - 16px)` }}
+                className="swiper-slide flex-shrink-0 h-full"
+                style={{ width: `${100 / itemsPerView}%` }}
               >
                 <ProductCardSlider product={product} />
               </div>

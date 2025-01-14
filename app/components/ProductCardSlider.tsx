@@ -11,22 +11,22 @@ const ProductCardSlider = ({ product }: ProductCardProps) => {
   return (
     <Link
       href={`/products/${product._id}`}
-      className="flex flex-col bg-white border border-gray-300 rounded-lg shadow-none  w-full h-full"
+      className="flex flex-col shadow-none w-full h-full"
     >
       {/* Imagem do Produto */}
-      <div className="relative w-full h-full flex justify-center items-center pt-6 rounded-t-lg">
+      <div className="relative w-full max-sm-plus:h-[40vh]  h-[60%] max-sm:mt-8 mt-4 flex justify-center items-center rounded-t-lg">
         <Image
           src={product.media[0]}
           alt={product.title}
           layout="fill"
           objectFit="contain"
-          className="pt-6"
+          className="max-w-full max-h-full"
         />
       </div>
 
       {/* Informações do Produto */}
-      <div className="flex flex-col justify-between  md:gap-4 py-10 md:h-1/3 h-1/2">
-        <h3 className="sm:text-heading4-bold text-[17px] font-semibold text-center">
+      <div className="flex flex-col justify-center items-center gap-2 sm:pt-4 md:gap-4 md:h-1/3 h-1/4">
+        <h3 className="text-heading4-bold font-semibold text-center sm:text-base max-sm-plus:text-[14px]">
           {product.title}
         </h3>
 
