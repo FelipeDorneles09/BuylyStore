@@ -27,8 +27,8 @@ const ProductDetails = async ({
   };
 
   return (
-    <div className="pb-16 pt-6">
-      <div className="flex justify-center items-start gap-16 py-10 px-5 max-lg-sm:flex-col max-lg-sm:items-center">
+    <div className="pb-16 max-sm:pt-2 pt-6">
+      <div className="flex justify-center items-start gap-16 max-sm:pt-2 py-10 px-5 max-lg-sm:flex-col max-lg-sm:items-center">
         <Gallery productMedia={productDetails.media} />
         <ProductInfo productInfo={productDetails} />
       </div>
@@ -37,7 +37,12 @@ const ProductDetails = async ({
         <p className="text-heading3-bold">Related Products</p>
         <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
           {relatedProducts?.map((product: ProductType) => (
-            <ProductCard key={product._id} product={product} />
+            <div
+              className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
+              key={product._id}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </div>

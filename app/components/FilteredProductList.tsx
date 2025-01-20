@@ -42,10 +42,14 @@ const FilteredProductList = ({ products }: FilteredProductListProps) => {
         </select>
       </div>
 
-      {/* Lista de produtos */}
-      <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
+      <div className="mt-8 flex flex-wrap gap-6 max-sm-plus:gap-4 max-sm:gap-10 md:gap-14 justify-center">
         {sortedProducts.map((product) => (
-          <ProductCard key={product._id} product={product} />
+          <div
+            className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
+            key={product._id}
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>

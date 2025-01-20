@@ -60,7 +60,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
   };
 
   return (
-    <div className="max-w-[450px] lg:max-w-[500px] flex flex-col gap-4">
+    <div className="max-w-[450px] max-sm-plus:max-w-[300px] lg:max-w-[500px] flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <p className="text-heading3-bold">{productInfo.title}</p>
         <HeartFavorite product={productInfo} />
@@ -83,7 +83,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       {productInfo.colors.length > 0 && (
         <div className="flex flex-col gap-2">
           <p className="text-base-bold text-grey-2">Colors:</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 ">
             {productInfo.colors.map((color, index) => (
               <p
                 key={index}
@@ -100,7 +100,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       {productInfo.sizes.length > 0 && (
         <div className="flex flex-col gap-2">
           <p className="text-base-bold text-grey-2">Sizes:</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {productInfo.sizes.map((size, index) => (
               <p
                 key={index}

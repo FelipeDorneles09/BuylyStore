@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import HeartFavorite from "./Heart";
 
 interface ProductCardProps {
   product: ProductType;
@@ -10,34 +11,24 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
+      className="bg-gray-100  h-[450px] text-black rounded-xl"
+      key={product._id}
       href={`/products/${product._id}`}
-      className="flex flex-col items-center gap-4 w-[265px]  md:w-[220px] lg:w-[280px] xl:w-[300px]  p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
     >
-      {/* Imagem do Produto */}
-      <div className="relative w-full h-48 flex justify-center items-center pt-6 rounded-t-lg">
-        <Image
-          src={product.media[0]}
-          alt={product.title}
-          width={200}
-          height={200}
-          className="object-contain pt-6"
-        />
+      <div className="h-56 flex justify-center items-center">
+        <img src={product.media[0]} alt={product.title} className="h-44 w-44" />
       </div>
-
-      {/* Informações do Produto */}
-      <div className="flex flex-col justify-between pt-12 p-4 md:pt-10 md:p-6 h-36">
-        <h3 className="text-md font-medium text-center text-gray-800">
-          {product.title}
-        </h3>
-
-        {/* Preço e Parcelas */}
-        <div className="flex flex-col items-center">
-          <p className="text-lg font-bold text-gray-900">
-            ${product.price.toFixed(2)}
-          </p>
-          <p className="text-sm text-gray-600">
-            ou 6x de ${(product.price / 6).toFixed(2)}
-          </p>
+      <div className="flex flex-col justify-center items-center gap-4 p-4">
+        <div className="flex justify-between w-full items-center">
+          <span className="text-blue-500">{"★".repeat(5)}</span>
+          <HeartFavorite product={product} />
+        </div>
+        <h3 className="text-xl font-semibold">{product.title}</h3>
+        <p className="description text-[12px]">{product.description}</p>
+        <div className="w-full flex justify-center items-center">
+          <button className="w-full text-lg font-semibold text-white bg-blue-500 py-2">
+            R${product.price.toFixed(2)}
+          </button>
         </div>
       </div>
     </Link>
