@@ -4,9 +4,14 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ArrowProps } from "react-slick"; // Importe a tipagem correta
 import Link from "next/link";
 import HeartFavorite from "./Heart";
+
+interface CustomArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
 
 interface ProductSliderProps {
   products: ProductType[];
@@ -14,7 +19,7 @@ interface ProductSliderProps {
 
 const ProductSlider = ({ products }: ProductSliderProps) => {
   // Tipando corretamente os props para os componentes de seta
-  function SampleNextArrow(props: ArrowProps) {
+  function SampleNextArrow(props: CustomArrowProps) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -43,7 +48,7 @@ const ProductSlider = ({ products }: ProductSliderProps) => {
     );
   }
 
-  function SamplePrevArrow(props: ArrowProps) {
+  function SamplePrevArrow(props: CustomArrowProps) {
     const { className, style, onClick } = props;
     return (
       <div
