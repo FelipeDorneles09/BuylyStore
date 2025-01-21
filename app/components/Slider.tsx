@@ -43,7 +43,7 @@ const Slider: React.FC<SliderProps> = ({ collections }) => {
                 alt={collection.title}
                 width={1920}
                 height={800}
-                className="w-full h-[70vh] md:h-[60vh] xl:h-[80vh] object-cover" // A imagem ocupará 50% da altura da tela em celulares e 80% em telas maiores
+                className="w-full max-sm:h-[40vh] h-[70vh] md:h-[60vh] xl:h-[80vh] object-cover" // A imagem ocupará 50% da altura da tela em celulares e 80% em telas maiores
               />
             </Link>
           </div>
@@ -52,13 +52,13 @@ const Slider: React.FC<SliderProps> = ({ collections }) => {
 
       <button
         onClick={prevSlide}
-        className="absolute ml-3 left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center px-2 pt-3 pb-4 md:px-4 md:pt-5 md:pb-6 md:text-[48px] text-[32px] text-white hover:bg-transparent-hover bg-transparent hover:text-black"
+        className="absolute ml-3 left-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center max-sm-plus:px-1 max-sm-plus:pt-1 max-sm-plus:pb-2 px-2 pt-3 pb-4 md:px-4 md:pt-5 md:pb-6 md:text-[48px] max-sm-plus:text-[24px] text-[32px] text-white hover:bg-transparent-hover bg-transparent hover:text-black"
       >
         &lt; {/* Substituído por "<" */}
       </button>
       <button
         onClick={nextSlide}
-        className="absolute mr-3 right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center px-2 pt-3 pb-4 md:px-4 md:pt-5 md:pb-6 md:text-[48px] text-[32px] text-white hover:bg-transparent-hover bg-transparent hover:text-black"
+        className="absolute mr-3 right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center max-sm-plus:px-1 max-sm-plus:pt-1 max-sm-plus:pb-2 px-2 pt-3 pb-4 md:px-4 md:pt-5 md:pb-6 md:text-[48px] max-sm-plus:text-[24px] text-[32px] text-white hover:bg-transparent-hover bg-transparent hover:text-black"
       >
         &gt;
       </button>

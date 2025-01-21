@@ -130,13 +130,13 @@ const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
         <div className="slider-navigation absolute top-1/2 left-0 right-0 flex justify-between items-center w-full transform -translate-y-1/2 px-2 z-10">
           <button
             onClick={handlePrev}
-            className="text-[32px] text-white hover:text-black bg-transparent p-1 md:p-2 xl-plus:hidden"
+            className="text-[32px] max-sm-plus:text-[24px] text-white hover:text-black bg-transparent p-1 md:p-2 xl-plus:hidden"
           >
             &lt;
           </button>
           <button
             onClick={handleNext}
-            className="text-[32px] text-white hover:text-black bg-transparent p-1 md:p-2 xl-plus:hidden"
+            className="text-[32px] max-sm-plus:text-[24px]  text-white hover:text-black bg-transparent p-1 md:p-2 xl-plus:hidden"
           >
             &gt;
           </button>

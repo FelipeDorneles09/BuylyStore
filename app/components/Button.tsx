@@ -29,14 +29,6 @@ const Button = ({
       {...props}
     >
       <span className="flex items-center">{children}</span>
-<<<<<<< HEAD
-=======
-      <span className="flex items-center">
-        {children}
-      </span>
->>>>>>> 0da712d (Update Button.tsx)
-=======
->>>>>>> 1aa9879 (attttt)
     </button>
   );
 };

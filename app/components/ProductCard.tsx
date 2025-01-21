@@ -15,8 +15,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       key={product._id}
       href={`/products/${product._id}`}
     >
-      <div className="h-56 flex justify-center items-center">
-        <img src={product.media[0]} alt={product.title} className="h-44 w-44" />
+      <div className="h-56 max-sm-plus:px-2 flex justify-center items-center">
+        <img
+          src={product.media[0]}
+          alt={product.title}
+          className="max-sm-plus:max-h-40 h-44 w-44"
+        />
       </div>
       <div className="flex flex-col justify-center items-center gap-4 p-4">
         <div className="flex justify-between w-full items-center">
