@@ -5,6 +5,10 @@ import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+interface UserPublicMetadata {
+  wishlist?: string[]; // Defina que wishlist é opcional e um array de strings
+}
+
 interface HeartFavoriteProps {
   product: ProductType;
   updateSignedInUser?: (updatedUser: UserType) => void;
@@ -19,8 +23,8 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
 
   useEffect(() => {
     if (user) {
-      // Use os dados de `user` para evitar chamada redundante
-      const wishlist = user.publicMetadata?.wishlist || [];
+      const publicMetadata = user.publicMetadata as UserPublicMetadata;
+      const wishlist = publicMetadata.wishlist || [];
       setIsLiked(wishlist.includes(product._id));
     }
   }, [user]);
