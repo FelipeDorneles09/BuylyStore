@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import Collections from "../components/Collections";
 import ProductList from "../components/ProductList";
 import CategoriesDisplay from "../components/CategoriesDisplay";
 import AboutUs from "../components/Aboutus";
