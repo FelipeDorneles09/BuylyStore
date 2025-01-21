@@ -18,22 +18,34 @@ const Footer = () => {
             <h2 className="text-body-bold mb-4 text-white">Quick Links</h2>
             <ul>
               <li>
-                <a href="" className="hover:underline text-gray-300">
+                <a
+                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#Home`}
+                  className="hover:underline text-gray-300"
+                >
                   Home
                 </a>
               </li>
               <li>
-                <a href="" className="hover:underline text-gray-300">
-                  Services
+                <a
+                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#Products`}
+                  className="hover:underline text-gray-300"
+                >
+                  Products
                 </a>
               </li>
               <li>
-                <a href="" className="hover:underline text-gray-300">
+                <a
+                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#Contact`}
+                  className="hover:underline text-gray-300"
+                >
                   Contact
                 </a>
               </li>
               <li>
-                <a href="" className="hover:underline text-gray-300">
+                <a
+                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#About`}
+                  className="hover:underline text-gray-300"
+                >
                   About
                 </a>
               </li>

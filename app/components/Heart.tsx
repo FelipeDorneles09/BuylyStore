@@ -17,21 +17,11 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
   const [loading, setLoading] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const getUser = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch("/api/users");
-      const data = await res.json();
-      setIsLiked(data.wishlist.includes(product._id));
-      setLoading(false);
-    } catch (err) {
-      console.log("[users_GET]", err);
-    }
-  };
-
   useEffect(() => {
     if (user) {
-      getUser();
+      // Use os dados de `user` para evitar chamada redundante
+      const wishlist = user.publicMetadata?.wishlist || [];
+      setIsLiked(wishlist.includes(product._id));
     }
   }, [user]);
 

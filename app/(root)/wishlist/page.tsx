@@ -63,9 +63,14 @@ const Wishlist = () => {
       <p className="text-heading3-bold my-10">Your Wishlist</p>
       {wishlist.length === 0 && <p>No items in your wishlist</p>}
 
-      <div className="flex flex-wrap justify-center gap-16">
+      <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
         {wishlist.map((product) => (
-          <ProductCard key={product._id} product={product} />
+          <div
+            className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
+            key={product._id}
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </div>

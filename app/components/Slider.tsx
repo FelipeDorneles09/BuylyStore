@@ -30,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({ collections }) => {
   }, [currentSlide]);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div id="Home" className="relative w-full overflow-hidden">
       <div
         className="flex transition-all duration-500"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}

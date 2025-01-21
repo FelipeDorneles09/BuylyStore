@@ -1,9 +1,16 @@
 export const getCollections = async () => {
-  const collections = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/collections`,
-    { cache: "no-store" }
-  );
-  return await collections.json();
+  try {
+    const collections = await fetchWithRetry(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/collections`,
+      { cache: "no-store" },
+      3 // 3 tentativas
+    );
+
+    return collections;
+  } catch (error) {
+    console.error("Failed to fetch collections:", error);
+    return []; // Retorne fallback para evitar falhas no componente
+  }
 };
 
 export const getCollectionsDetails = async (collectionId: string) => {
@@ -86,4 +93,27 @@ export const getAboutUs = async () => {
     { cache: "no-store" }
   );
   return await aboutus.json();
+};
+
+const fetchWithRetry = async (
+  url: string,
+  options: RequestInit,
+  retries = 3
+) => {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`Failed with status: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      if (attempt < retries - 1) {
+        console.warn(`Retrying fetch: attempt ${attempt + 1}`);
+        continue;
+      }
+      console.error("All retries failed:", error);
+      throw error;
+    }
+  }
 };
