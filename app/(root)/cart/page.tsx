@@ -48,10 +48,10 @@ const Cart = () => {
   return (
     <div className="flex gap-20 py-16 px-10 max-lg:flex-col ">
       <div className="w-2/3 max-lg:w-full">
-        <p className="text-heading3-bold">Shopping Cart</p>
+        <p className="text-heading3-bold">Carrinho</p>
         <hr className="my-6" />
         {cart.cartItems.length === 0 ? (
-          <p className="text-body-bold">No item in cart</p>
+          <p className="text-body-bold">Nenhum Item no carrinho</p>
         ) : (
           <div>
             {cart.cartItems.map((cartItem) => (
@@ -111,18 +111,18 @@ const Cart = () => {
 
       <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
         <p className="text-heading4-bold pb-4">
-          Summary{" "}
+          Resumo
           <span>{`(${cart.cartItems.length} ${cart.cartItems.length > 1 ? "items" : "item"})`}</span>
         </p>
         <div className="flex justify-between text-body-semibold">
-          <span>Total Amount</span>
-          <span>$ {totalRounded}</span>
+          <span>Preço Total</span>
+          <span>R$ {totalRounded}</span>
         </div>
         <button
           className="border rounded-lg text-body-bold bg-white py-3 w-full hover:bg-black hover:text-white"
           onClick={handleCheckout}
         >
-          Proceed to Checkout
+          Continuar para Pagamento
         </button>
       </div>
     </div>

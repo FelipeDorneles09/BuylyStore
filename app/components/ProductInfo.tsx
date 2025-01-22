@@ -67,7 +67,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       </div>
 
       <div className="flex gap-2">
-        <p className="text-base-medium text-grey-2">Category: </p>
+        <p className="text-base-medium text-grey-2">Categoria: </p>
         <p className="text-base-bold">
           {productInfo.categories[0]?.title || "Sem Categoria"}
         </p>
@@ -76,13 +76,13 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       <p className="text-heading3-bold">$ {productInfo.price}</p>
 
       <div className="flex flex-col gap-2">
-        <p className="text-base-medium text-grey-2">Description: </p>
+        <p className="text-base-medium text-grey-2">Descrição: </p>
         <p className="text-small-medium">{productInfo.description}</p>
       </div>
 
       {productInfo.colors.length > 0 && (
         <div className="flex flex-col gap-2">
-          <p className="text-base-bold text-grey-2">Colors:</p>
+          <p className="text-base-bold text-grey-2">Cores:</p>
           <div className="flex flex-wrap gap-2 ">
             {productInfo.colors.map((color, index) => (
               <p
@@ -99,7 +99,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
 
       {productInfo.sizes.length > 0 && (
         <div className="flex flex-col gap-2">
-          <p className="text-base-bold text-grey-2">Sizes:</p>
+          <p className="text-base-bold text-grey-2">Tamanhos:</p>
           <div className="flex flex-wrap gap-2">
             {productInfo.sizes.map((size, index) => (
               <p
@@ -115,7 +115,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       )}
 
       <div className="flex flex-col gap-2">
-        <p className="text-base-medium text-grey-2">Quantity:</p>
+        <p className="text-base-medium text-grey-2">Quantidade:</p>
         <div className="flex gap-4 items-center">
           <MinusCircle
             className="hover:text-blue-500 cursor-pointer"
@@ -140,10 +140,10 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
           });
         }}
       >
-        Add to Cart
+        Adcionar ao Carrinho
       </button>
       <div className="mt-8">
-        <p className="text-heading3-bold">Leave a Review</p>
+        <p className="text-heading3-bold">Deixe uma Avaliação</p>
         <div className="flex gap-2 mt-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -157,7 +157,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
         </div>
         <textarea
           className="w-full border p-2 rounded-lg mt-2 resize-none h-20"
-          placeholder="Write your comment here..."
+          placeholder="Escreva seu comentário aqui..."
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
@@ -167,12 +167,12 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
           disabled={buttonState === "submitting"}
         >
           {buttonState === "submitting"
-            ? "Submitting"
+            ? "Enviando"
             : buttonState === "submitted"
-              ? "Submitted"
+              ? "Enviado"
               : buttonState === "failed"
-                ? "Try Again"
-                : "Submit Review"}
+                ? "Tente Novamente"
+                : "Enviar Avaliação"}
         </button>
       </div>
     </div>

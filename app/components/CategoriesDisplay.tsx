@@ -76,7 +76,9 @@ const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
 
   if (!categories || categories.length === 0) {
     return (
-      <p className="text-xl font-semibold text-center">No categories found</p>
+      <p className="text-xl font-semibold text-center">
+        Nenhuma categoria encontrada
+      </p>
     );
   }
 
@@ -104,7 +106,7 @@ const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
               key={category._id}
             >
               <Link href={`/categories/${category._id}`}>
-                <div className="relative overflow-hidden min-h-[320px] lg:min-h-[500px] w-full border-grey-2 border group">
+                <div className="relative overflow-hidden max-sm-plus:min-h-[260px] min-h-[320px] lg:min-h-[500px] w-full border-grey-2 border group">
                   <Image
                     src={category.image}
                     alt={category.title}
@@ -112,6 +114,8 @@ const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
                     objectFit="cover"
                     className="transition-transform duration-300 ease-in-out border border-white transform hover:scale-105 hover:filter hover:brightness-110 hover:contrast-110 hover:saturate-110"
                   />
+
+                  <div className="absolute inset-0 bg-black bg-opacity-30 pointer-events-none group-hover:bg-opacity-50 transition duration-300"></div>
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white text-2xl font-semibold max-w-[394px] w-full">
                     <h3 className="text-shadow-lg font-oswald text-[24px] uppercase xl:text-[40px] lg:text-[36px] md:text-[28px]">
                       {category.title}

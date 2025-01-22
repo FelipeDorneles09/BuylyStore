@@ -56,12 +56,12 @@ const ContactUs = () => {
       {/* Esquerda: Título e Texto */}
       <div className="flex flex-col items-start text-left md:w-1/2">
         <h2 className="text-heading1-bold md:text-4xl font-bold mb-8">
-          Contact Us
+          Fale Conosco
         </h2>
         <p className="text-xl md:text-2xl">
-          Got questions? Feel free to reach out to us for any inquiries,
-          clarifications, or assistance. We’re here to help and would love to
-          hear from you!
+          Tem perguntas? Sinta-se à vontade para entrar em contato conosco para
+          quaisquer dúvidas, esclarecimentos ou assistência. Estamos aqui para
+          ajudar e adoraríamos ouvir de você!
         </p>
         <div className="mt-8 space-y-4">
           <div className="flex items-center gap-4">
@@ -135,13 +135,13 @@ const ContactUs = () => {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700"
             >
-              Name
+              Nome
             </label>
             <input
               type="name"
               name="name"
               id="name"
-              placeholder="Your name"
+              placeholder="Seu Nome"
               value={formData.name}
               onChange={handleChange}
               className="mt-1 p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -158,7 +158,7 @@ const ContactUs = () => {
               type="email"
               name="email_from"
               id="emailFrom"
-              placeholder="you@example.com"
+              placeholder="seunome@example.com"
               value={formData.email_from}
               onChange={handleChange}
               className="mt-1 p-3 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -169,12 +169,12 @@ const ContactUs = () => {
               htmlFor="message"
               className="block text-sm font-medium text-gray-700"
             >
-              Message
+              Mensagem
             </label>
             <textarea
               name="message"
               id="message"
-              placeholder="Write your message here..."
+              placeholder="Escreva sua mensagem aqui..."
               rows={4}
               value={formData.message}
               onChange={handleChange}
@@ -200,7 +200,7 @@ const ContactUs = () => {
                 </svg>
               } // Exemplo de ícone
             >
-              {isSent ? "Sent" : "Send"}
+              {isSent ? "Enviado" : "Enviar"}
             </Button>
           </div>
         </form>

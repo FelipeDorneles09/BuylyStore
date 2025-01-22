@@ -59,9 +59,11 @@ const Wishlist = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="px-10 py-5">
-      <p className="text-heading3-bold my-10">Your Wishlist</p>
-      {wishlist.length === 0 && <p>No items in your wishlist</p>}
+    <div className="px-10 max-sm-plus:px-0 max-sm-plus:py-2 py-5 ">
+      <p className="text-heading3-bold my-10 max-sm-plus:px-2">
+        Lista de Desejos
+      </p>
+      {wishlist.length === 0 && <p>Nenhum item na Lista de Desejos</p>}
 
       <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
         {wishlist.map((product) => (

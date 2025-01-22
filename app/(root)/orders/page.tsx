@@ -10,20 +10,18 @@ const Orders = async () => {
 
   return (
     <div className="px-10 py-5 max-sm:px-3">
-      <p className="text-heading3-bold my-10">Your Orders</p>
+      <p className="text-heading3-bold my-10">Pedidos</p>
       {!orders ||
         (orders.length === 0 && (
-          <p className="text-body-bold my-5">You have no orders yet.</p>
+          <p className="text-body-bold my-5">Você ainda não fez Pedidos.</p>
         ))}
 
       <div className="flex gap-10 flex-col">
         {orders?.map((order: OrderType) => (
           <div className="flex flex-col gap-8 p-4 hover:bg-grey-1">
             <div className="flex gap-20 max-md:flex-col max-md:gap-3">
-              <p className="text-base-bold">Order ID: {order._id}</p>
-              <p className="text-base-bold">
-                Total Amount: ${order.totalAmount}
-              </p>
+              <p className="text-base-bold">ID do pedido: {order._id}</p>
+              <p className="text-base-bold">Total: R${order.totalAmount}</p>
             </div>
             <div className="flex flex-col gap-5">
               {order.products.map((orderItem: OrderItemType) => (
@@ -37,14 +35,14 @@ const Orders = async () => {
                   />
                   <div className="flex flex-col justify-between">
                     <p className="text-small-medium">
-                      Title:{" "}
+                      Produto:{" "}
                       <span className="text-small-bold">
                         {orderItem.product.title}
                       </span>
                     </p>
                     {orderItem.color && (
                       <p className="text-small-medium">
-                        Color:{" "}
+                        Cor:{" "}
                         <span className="text-small-bold">
                           {orderItem.color}
                         </span>
@@ -52,20 +50,20 @@ const Orders = async () => {
                     )}
                     {orderItem.size && (
                       <p className="text-small-medium">
-                        Size:{" "}
+                        Tamanho:{" "}
                         <span className="text-small-bold">
                           {orderItem.size}
                         </span>
                       </p>
                     )}
                     <p className="text-small-medium">
-                      Unit price:{" "}
+                      Preço da Unidade:{" "}
                       <span className="text-small-bold">
                         {orderItem.product.price}
                       </span>
                     </p>
                     <p className="text-small-medium">
-                      Quantity:{" "}
+                      Quantidade:{" "}
                       <span className="text-small-bold">
                         {orderItem.quantity}
                       </span>

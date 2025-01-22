@@ -23,7 +23,7 @@ const ProductDetails = async ({
       month: "long",
       day: "numeric",
     };
-    return new Date(date).toLocaleDateString("en-US", options);
+    return new Date(date).toLocaleDateString("pt-BR", options);
   };
 
   return (
@@ -34,7 +34,7 @@ const ProductDetails = async ({
       </div>
 
       <div className="flex flex-col items-center py-4 px-10 max-md:px-3">
-        <p className="text-heading3-bold">Related Products</p>
+        <p className="text-heading3-bold">Produtos Relacionados</p>
         <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
           {relatedProducts?.map((product: ProductType) => (
             <div
@@ -47,7 +47,7 @@ const ProductDetails = async ({
         </div>
       </div>
       <div className="mt-16 mx-16 lg:mx-32">
-        <p className="text-heading3-bold">Customer Reviews</p>
+        <p className="text-heading3-bold">Avaliações dos Clientes</p>
         {reviews.length === 0 ? (
           <p>No reviews yet.</p>
         ) : (

@@ -54,7 +54,7 @@ const Navbar = () => {
           href="/"
           className={`hover:text-blue-500 ${pathname === "/" && "text-blue-500"}`}
         >
-          Home
+          Início
         </Link>
 
         {/* New Categories Dropdown */}
@@ -63,7 +63,7 @@ const Navbar = () => {
             onClick={() => setCategoriesMenu(!categoriesMenu)}
             className="hover:text-blue-500"
           >
-            Categories
+            Categorias
           </button>
           {categoriesMenu && (
             <div className="absolute left-1/2 transform -translate-x-1/2 bg-white border rounded-lg mt-2 shadow-lg z-50">
@@ -85,20 +85,20 @@ const Navbar = () => {
           href={user ? "/wishlist" : "/sign-in"}
           className={`hover:text-blue-500 ${pathname === "/wishlist" && "text-blue-500"}`}
         >
-          Wishlist
+          Lista de Desejos
         </Link>
         <Link
           href={user ? "/orders" : "/sign-in"}
           className={`hover:text-blue-500 ${pathname === "/orders" && "text-blue-500"}`}
         >
-          Orders
+          Pedidos
         </Link>
       </div>
 
       <div className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">
         <input
           className="outline-none max-sm:max-w-[120px]"
-          placeholder="Search..."
+          placeholder="Pesquisar..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -116,7 +116,7 @@ const Navbar = () => {
           className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden"
         >
           <ShoppingCart />
-          <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
+          <p className="text-base-bold">Carrinho ({cart.cartItems.length})</p>
         </Link>
 
         <Menu
@@ -127,14 +127,14 @@ const Navbar = () => {
         {dropdownMenu && (
           <div className="absolute top-12 right-5 flex flex-col gap-4 p-3 rounded-lg border bg-white text-base-bold lg:hidden">
             <Link href="/" className="hover:text-blue-500">
-              Home
+              Início
             </Link>
             <div className="relative">
               <button
                 onClick={() => setCategoriesMenu(!categoriesMenu)}
                 className="hover:text-blue-500"
               >
-                Categories
+                Categorias
               </button>
               {categoriesMenu && (
                 <div className="absolute right-0 bg-white border rounded-lg mt-2 shadow-lg z-50">
@@ -158,20 +158,22 @@ const Navbar = () => {
               href={user ? "/wishlist" : "/sign-in"}
               className="hover:text-blue-500"
             >
-              Wishlist
+              Lista de Desejos
             </Link>
             <Link
               href={user ? "/orders" : "/sign-in"}
               className="hover:text-blue-500"
             >
-              Orders
+              Pedidos
             </Link>
             <Link
               href="/cart"
               className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
             >
               <ShoppingCart />
-              <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
+              <p className="text-base-bold">
+                Carrinho ({cart.cartItems.length})
+              </p>
             </Link>
           </div>
         )}

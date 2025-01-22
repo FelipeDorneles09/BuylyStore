@@ -107,9 +107,9 @@ const Trust = () => {
       <div className="max-w-7xl mx-auto text-center">
         <div className="flex flex-col gap-4 md:gap-10">
           <div className="flex flex-col gap-1">
-            <p className="text-[12px] text-center">Best Products</p>
+            <p className="text-[12px] text-center">Compras confiavéis</p>
             <p className="text-heading1-bold font-bold text-center">
-              Why Choose us
+              Compre Conosco
             </p>
           </div>
 
