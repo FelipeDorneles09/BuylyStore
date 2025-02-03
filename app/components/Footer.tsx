@@ -46,7 +46,7 @@ const Footer = () => {
                   href={`${process.env.NEXT_PUBLIC_SITE_URL}#About`}
                   className="hover:underline text-gray-300"
                 >
-                  Sobre
+                  PIX
                 </a>
               </li>
             </ul>
