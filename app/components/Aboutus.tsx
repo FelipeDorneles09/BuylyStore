@@ -18,7 +18,7 @@ const AboutUs = async () => {
 
             <p className="text-xl md:text-2xl my-8">{about.description}</p>
 
-            <a href="https://web.whatsapp.com/send?phone=5551996873989">
+            <a href="https://wa.me/5551996873989?text=Olá,+desejo+fazer+um+pagamento+com+pix">
               <button className="text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-200 bg-blue-500">
                 Pagar com PIX
               </button>
