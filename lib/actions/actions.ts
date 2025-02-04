@@ -1,155 +1,118 @@
 export const getCollections = async () => {
   try {
-    return await fetchWithRetry(
+    const collections = await fetchWithRetry(
       `${process.env.NEXT_PUBLIC_API_URL}/api/collections`,
-      { cache: "no-store" }
+      { cache: "no-store" },
+      3 // 3 tentativas
     );
+
+    return collections;
   } catch (error) {
     console.error("Failed to fetch collections:", error);
-    return [];
+    return []; // Retorne fallback para evitar falhas no componente
   }
 };
 
 export const getCollectionsDetails = async (collectionId: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/collections/${collectionId}`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch collection details:", error);
-    return null;
-  }
+  const collection = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/collections/${collectionId}`,
+    { cache: "no-store" }
+  );
+  return await collection.json();
 };
 
 export const getProducts = async () => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch products:", error);
-    return [];
-  }
+  const products = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await products.json();
 };
 
 export const getProductsDetails = async (productId: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch product details:", error);
-    return null;
-  }
+  const product = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await product.json();
 };
 
 export const getSearchedProducts = async (query: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/search/${query}`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch searched products:", error);
-    return [];
-  }
+  const searchedProducts = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/search/${query}`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await searchedProducts.json();
 };
 
 export const getOrders = async (customerId: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/orders/customers/${customerId}`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch orders:", error);
-    return [];
-  }
+  const orders = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/orders/customers/${customerId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await orders.json();
 };
 
 export const getRelatedProducts = async (productId: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/related`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch related products:", error);
-    return [];
-  }
+  const relatedProducts = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/related`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await relatedProducts.json();
 };
 
 export const getCategories = async () => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/categories`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch categories:", error);
-    return [];
-  }
+  const categories = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/categories`,
+    { cache: "no-store" }
+  );
+  return await categories.json();
 };
 
 export const getCategoriesDetails = async (categoryId: string) => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/categories/${categoryId}`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch category details:", error);
-    return null;
-  }
+  const category = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/categories/${categoryId}`,
+    { cache: "no-store" }
+  );
+  return await category.json();
 };
 
 export const getAboutUs = async () => {
-  try {
-    return await fetchWithRetry(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/aboutus`,
-      { cache: "no-store" }
-    );
-  } catch (error) {
-    console.error("Failed to fetch about us:", error);
-    return null;
-  }
+  const aboutus = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/aboutus`,
+    { cache: "no-store" }
+  );
+  return await aboutus.json();
 };
 
 const fetchWithRetry = async (
   url: string,
   options: RequestInit,
-  retries = 3,
-  timeout = 20000 // 10 segundos
+  retries = 3
 ) => {
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), timeout);
-      const response = await fetch(url, {
-        ...options,
-        signal: controller.signal,
-      });
-      clearTimeout(id);
-
+      const response = await fetch(url, options);
       if (!response.ok) {
         throw new Error(`Failed with status: ${response.status}`);
       }
       return await response.json();
     } catch (error) {
-      if (error instanceof Error) {
-        console.error(`Erro ao buscar ${url}:`, error.message);
-      } else {
-        console.error(`Erro desconhecido ao buscar ${url}:`, error);
-      }
-
       if (attempt < retries - 1) {
         console.warn(`Retrying fetch: attempt ${attempt + 1}`);
         continue;
       }
-
+      console.error("All retries failed:", error);
       throw error;
     }
   }
