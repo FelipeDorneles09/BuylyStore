@@ -1,14 +1,14 @@
 {
   "version": 2,
   "functions": {
-    "api/*": {
+    "pages/api/*": {
       "maxDuration": 60
     }
   },
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "app/api/$1",
+      "dest": "/api/$1",
       "methods": ["GET", "POST", "PUT", "DELETE"]
     }
   ]
