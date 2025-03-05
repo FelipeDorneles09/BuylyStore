@@ -51,16 +51,18 @@ const Cart = () => {
   };
 
   const handlePixPayment = () => {
-    const productDescriptions = cart.cartItems.map((cartItem) => ({
-      quantity: cartItem.quantity,
-      title: cartItem.item.title,
-      size: cartItem.item.sizes,
-      color: cartItem.item.colors,
-    }));
+    const productDescriptions = cart.cartItems
+      .map(
+        (cartItem) =>
+          ` ${cartItem.quantity}x ${cartItem.item.title} - ${cartItem.item.sizes} - ${cartItem.item.colors}`
+      )
+      .join("; "); // Separando por ponto e vírgula
 
-    localStorage.setItem("pixProducts", JSON.stringify(productDescriptions));
-
-    router.push(`/pix?total=${totalWithDiscountRounded}`);
+    router.push(
+      `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(
+        productDescriptions
+      )}`
+    );
   };
 
   return (
