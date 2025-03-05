@@ -54,8 +54,8 @@ const Cart = () => {
     const productDescriptions = cart.cartItems.map((cartItem) => ({
       quantity: cartItem.quantity,
       title: cartItem.item.title,
-      size: cartItem.size,
-      color: cartItem.color,
+      size: cartItem.item.sizes,
+      color: cartItem.item.colors,
     }));
 
     localStorage.setItem("pixProducts", JSON.stringify(productDescriptions));
