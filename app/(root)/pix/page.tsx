@@ -77,39 +77,32 @@ class Pix {
 
   // Método para calcular o CRC16
   private _getCrc16(payload: string): string {
-    // Funções auxiliares para CRC16
     function ord(str: string): number {
       return str.charCodeAt(0);
     }
 
     function dechex(number: number): string {
-      if (number < 0) {
-        number = 0xffffffff + number + 1;
-      }
-      return parseInt(number.toString(), 10).toString(16);
+      return number.toString(16).padStart(4, "0").toUpperCase(); // Garante 4 caracteres
     }
 
-    // Adiciona dados gerais no payload
-    payload = payload + this.ID_CRC16 + "04";
+    payload = payload + this.ID_CRC16 + "04"; // Adiciona identificador CRC
 
-    // Dados definidos pelo BACEN
     let polinomio = 0x1021;
     let resultado = 0xffff;
-    let length;
 
-    // CRC16
-    if ((length = payload.length) > 0) {
-      for (let offset = 0; offset < length; offset++) {
-        resultado ^= ord(payload[offset]) << 8;
-        for (let bitwise = 0; bitwise < 8; bitwise++) {
-          if ((resultado <<= 1) & 0x10000) resultado ^= polinomio;
-          resultado &= 0xffff;
+    for (let i = 0; i < payload.length; i++) {
+      resultado ^= ord(payload[i]) << 8;
+      for (let bit = 0; bit < 8; bit++) {
+        if ((resultado & 0x8000) !== 0) {
+          resultado = (resultado << 1) ^ polinomio;
+        } else {
+          resultado <<= 1;
         }
       }
+      resultado &= 0xffff; // Garante que continua sendo um número de 16 bits
     }
 
-    // Retorna o código CRC16 de 4 caracteres
-    return this.ID_CRC16 + "04" + dechex(resultado).toUpperCase();
+    return this.ID_CRC16 + "04" + dechex(resultado); // Retorna CRC16 com 4 caracteres
   }
 
   public getPayload(): string {
