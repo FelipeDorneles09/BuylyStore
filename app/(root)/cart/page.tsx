@@ -54,7 +54,7 @@ const Cart = () => {
     const productDescriptions = cart.cartItems
       .map(
         (cartItem) =>
-          ` ${cartItem.quantity}x ${cartItem.item.title} - ${cartItem.item.sizes} - ${cartItem.item.colors}`
+          ` ${cartItem.quantity}x ${cartItem.item.title} - ${cartItem.size} - ${cartItem.color}`
       )
       .join("; "); // Separando por ponto e vírgula
 
