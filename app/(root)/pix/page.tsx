@@ -158,8 +158,8 @@ const PagamentoPix = () => {
   const total = searchParams.get("total"); // Obtém o valor total da URL
   const [valor, setValor] = useState<string>(total || "0.00"); // Usa o valor do parâmetro ou um valor padrão
 
-  const [nome, setNome] = useState<string>("Isadora Ballejo");
-  const [chavePix, setChavePix] = useState<string>("+5551991516671");
+  const [nome, setNome] = useState<string>("Felipe Dorneles de Carvalho");
+  const [chavePix, setChavePix] = useState<string>("04755745080");
   const [cidade, setCidade] = useState<string>("Canoas");
   const [txtId, setTxtId] = useState<string>("Buyly");
   const [payloadCompleto, setPayloadCompleto] = useState<string>("");
@@ -184,7 +184,7 @@ const PagamentoPix = () => {
       </p>
       <div className="flex flex-col justify-center items-center gap-y-8">
         <QRCode value={payloadCompleto} />
-        <div className="flex items-center w-[80%]">
+        <div className="flex justify-center items-center w-[80%]">
           <div
             onClick={handleCopy}
             className="flex items-center gap-2 cursor-pointer bg-gray-100 rounded-lg p-4" // Garantir que há espaço entre o texto e o ícone
