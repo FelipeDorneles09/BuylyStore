@@ -24,6 +24,11 @@ const Cart = () => {
     name: user?.user?.fullName,
   };
 
+  const discount = 0.05;
+  const shippingFee = 16.99;
+  const totalWithDiscount = total * (1 - discount) + shippingFee;
+  const totalWithDiscountRounded = parseFloat(totalWithDiscount.toFixed(2));
+
   const handleCheckout = async () => {
     try {
       if (!user) {
@@ -43,6 +48,11 @@ const Cart = () => {
     } catch (err) {
       console.log("[checkout_POST]", err);
     }
+  };
+
+  const handlePixPayment = () => {
+    // Redireciona para a página de pagamento via Pix
+    router.push(`/pix?total=${totalWithDiscountRounded}`);
   };
 
   return (
@@ -123,6 +133,12 @@ const Cart = () => {
           onClick={handleCheckout}
         >
           Continuar para Pagamento
+        </button>
+        <button
+          className="border rounded-lg text-body-bold bg-white py-3 w-full hover:bg-black hover:text-white mt-4"
+          onClick={handlePixPayment}
+        >
+          Pagar com Pix
         </button>
       </div>
     </div>
