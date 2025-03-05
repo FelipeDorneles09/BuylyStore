@@ -52,8 +52,11 @@ const Cart = () => {
 
   const handlePixPayment = () => {
     const productDescriptions = cart.cartItems
-      .map((cartItem) => `${cartItem.quantity}x ${cartItem.item.title}`)
-      .join(", "); // Concatena os nomes e quantidades
+      .map(
+        (cartItem) =>
+          `${cartItem.quantity}x ${cartItem.item.title} - ${cartItem.item.sizes}, ${cartItem.item.colors}`
+      )
+      .join("; "); // Separando por ponto e vírgula
 
     router.push(
       `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(
