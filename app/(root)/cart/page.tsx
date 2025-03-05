@@ -53,8 +53,8 @@ const Cart = () => {
   const handlePixPayment = () => {
     const productDescriptions = cart.cartItems
       .map(
-        (cartItem) =>
-          ` ${cartItem.quantity}x ${cartItem.item.title} - ${cartItem.size} - ${cartItem.color}`
+        (cartItems) =>
+          ` ${cartItems.quantity}x ${cartItems.item.title} - ${cartItems.size} - ${cartItems.color}`
       )
       .join("; "); // Separando por ponto e vírgula
 
