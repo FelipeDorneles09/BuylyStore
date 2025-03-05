@@ -51,8 +51,15 @@ const Cart = () => {
   };
 
   const handlePixPayment = () => {
-    // Redireciona para a página de pagamento via Pix
-    router.push(`/pix?total=${totalWithDiscountRounded}`);
+    const productDescriptions = cart.cartItems
+      .map((cartItem) => `${cartItem.quantity}x ${cartItem.item.title}`)
+      .join(", "); // Concatena os nomes e quantidades
+
+    router.push(
+      `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(
+        productDescriptions
+      )}`
+    );
   };
 
   return (
