@@ -151,8 +151,8 @@ const PagamentoPix = () => {
   const total = searchParams.get("total"); // Obtém o valor total da URL
   const [valor, setValor] = useState<string>(total || "0.00"); // Usa o valor do parâmetro ou um valor padrão
 
-  const [nome, setNome] = useState<string>("Felipe Dorneles de Carvalho");
-  const [chavePix, setChavePix] = useState<string>("04755745080");
+  const [nome, setNome] = useState<string>("Isadora Ballejo");
+  const [chavePix, setChavePix] = useState<string>("+5551991516671");
   const [cidade, setCidade] = useState<string>("Canoas");
   const [txtId, setTxtId] = useState<string>("Buyly");
   const [payloadCompleto, setPayloadCompleto] = useState<string>("");
