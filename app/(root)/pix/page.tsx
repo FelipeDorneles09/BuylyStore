@@ -43,7 +43,7 @@ class Pix {
     this.valor = valor;
     this.cidade = cidade;
     this.txtId = txtId;
-    this.descricao = descricao.slice(0, 50);
+    this.descricao = descricao;
   }
 
   private _getValue(id: string, value: string): string {
