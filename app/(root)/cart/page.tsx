@@ -50,20 +50,19 @@ const Cart = () => {
     }
   };
 
-  const handlePixPayment = () => {
-    // Função para remover acentos
-    const removeAcentos = (str) => {
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    };
+  const removeAcentos = (str: string): string => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
 
+  const handlePixPayment = () => {
     const productDescriptions = cart.cartItems
       .map((cartItems) => {
-        // Remover acentos de título, tamanho e cor
-        const titleWithoutAccents = removeAcentos(cartItems.item.title);
-        const sizeWithoutAccents = removeAcentos(cartItems.size);
-        const colorWithoutAccents = removeAcentos(cartItems.color);
+        // Garantir que title, size e color não sejam undefined
+        const titleWithoutAccents = removeAcentos(cartItems.item.title ?? "");
+        const sizeWithoutAccents = removeAcentos(cartItems.size ?? "");
+        const colorWithoutAccents = removeAcentos(cartItems.color ?? "");
 
-        return `${cartItems.quantity}${titleWithoutAccents} ${sizeWithoutAccents} ${colorWithoutAccents}`;
+        return `${cartItems.quantity}${titleWithoutAccents}-${sizeWithoutAccents}-${colorWithoutAccents}`;
       })
       .join(";"); // Separando por ponto e vírgula
 
