@@ -51,17 +51,24 @@ const Cart = () => {
   };
 
   const handlePixPayment = () => {
+    // Função para remover acentos
+    const removeAcentos = (str) => {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+
     const productDescriptions = cart.cartItems
-      .map(
-        (cartItems) =>
-          ` ${cartItems.quantity}${cartItems.item.title.slice(0, 10)} ${cartItems.color}`
-      )
-      .join("; ");
+      .map((cartItems) => {
+        // Remover acentos de título, tamanho e cor
+        const titleWithoutAccents = removeAcentos(cartItems.item.title);
+        const sizeWithoutAccents = removeAcentos(cartItems.size);
+        const colorWithoutAccents = removeAcentos(cartItems.color);
+
+        return `${cartItems.quantity}${titleWithoutAccents} ${sizeWithoutAccents} ${colorWithoutAccents}`;
+      })
+      .join(";"); // Separando por ponto e vírgula
 
     router.push(
-      `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(
-        productDescriptions
-      )}`
+      `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(productDescriptions)}`
     );
   };
 
