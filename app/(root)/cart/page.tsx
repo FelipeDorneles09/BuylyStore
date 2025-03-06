@@ -50,25 +50,9 @@ const Cart = () => {
     }
   };
 
-  const removeAcentos = (str: string): string => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  };
-
   const handlePixPayment = () => {
-    const productDescriptions = cart.cartItems
-      .map((cartItems) => {
-        // Garantir que title, size e color não sejam undefined
-        const titleWithoutAccents = removeAcentos(cartItems.item.title ?? "");
-        const sizeWithoutAccents = removeAcentos(cartItems.size ?? "");
-        const colorWithoutAccents = removeAcentos(cartItems.color ?? "");
-
-        return `${cartItems.quantity}${titleWithoutAccents}${sizeWithoutAccents}${colorWithoutAccents}`;
-      })
-      .join(";"); // Separando por ponto e vírgula
-
-    router.push(
-      `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(productDescriptions)}`
-    );
+    // Redireciona para a página de pagamento via Pix
+    router.push(`/pix?total=${totalWithDiscountRounded}`);
   };
 
   return (

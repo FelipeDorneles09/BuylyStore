@@ -12,7 +12,6 @@ class Pix {
   private valor: string;
   private cidade: string;
   private txtId: string;
-  private descricao: string;
 
   // Identificadores para os campos Pix
   private ID_PAYLOAD_FORMAT_INDICATOR = "00";
@@ -35,15 +34,13 @@ class Pix {
     chavePix: string,
     valor: string,
     cidade: string,
-    txtId: string,
-    descricao: string
+    txtId: string
   ) {
     this.nome = nome;
     this.chavePix = chavePix;
     this.valor = valor;
     this.cidade = cidade;
     this.txtId = txtId;
-    this.descricao = descricao;
   }
 
   private _getValue(id: string, value: string): string {
@@ -62,7 +59,7 @@ class Pix {
     );
     const description = this._getValue(
       this.ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION,
-      this.descricao
+      "" // Adicionar Descrição
     );
     return this._getValue(
       this.ID_MERCHANT_ACCOUNT_INFORMATION,
@@ -150,9 +147,9 @@ class Pix {
 
 // Componente de pagamento Pix
 const PagamentoPix = () => {
-  const searchParams = useSearchParams();
-  const total = searchParams.get("total") || "0.00";
-  const description = searchParams.get("desc") || "Pedido Online";
+  const searchParams = useSearchParams(); // Captura os parâmetros de busca da URL
+  const total = searchParams.get("total"); // Obtém o valor total da URL
+  const [valor, setValor] = useState<string>(total || "0.00"); // Usa o valor do parâmetro ou um valor padrão
 
   const [nome, setNome] = useState<string>("Isadora Ballejo");
   const [chavePix, setChavePix] = useState<string>("+5551991516671");
@@ -162,7 +159,7 @@ const PagamentoPix = () => {
 
   useEffect(() => {
     if (total) {
-      const pix = new Pix(nome, chavePix, total, cidade, txtId, description); // Usa o valor da URL
+      const pix = new Pix(nome, chavePix, total, cidade, txtId); // Usa o valor da URL
       const payload = pix.getPayload();
       setPayloadCompleto(payload);
     }
