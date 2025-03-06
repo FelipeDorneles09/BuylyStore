@@ -62,7 +62,7 @@ const Cart = () => {
         const sizeWithoutAccents = removeAcentos(cartItems.size ?? "");
         const colorWithoutAccents = removeAcentos(cartItems.color ?? "");
 
-        return `${cartItems.quantity}${titleWithoutAccents}-${sizeWithoutAccents}-${colorWithoutAccents}`;
+        return `${cartItems.quantity}${titleWithoutAccents}${sizeWithoutAccents}${colorWithoutAccents}`;
       })
       .join(";"); // Separando por ponto e vírgula
 
