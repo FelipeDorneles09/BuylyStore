@@ -54,9 +54,9 @@ const Cart = () => {
     const productDescriptions = cart.cartItems
       .map(
         (cartItems) =>
-          `${cartItems.quantity}${cartItems.item.title.slice(0, 10)} ${cartItems.size} ${cartItems.color}`
+          `${cartItems.quantity}${cartItems.item.title.slice(0, 10)}${cartItems.size}${cartItems.color}`
       )
-      .join("; ");
+      .join(";");
 
     router.push(
       `/pix?total=${totalWithDiscountRounded}&desc=${encodeURIComponent(
