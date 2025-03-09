@@ -52,7 +52,7 @@ const Cart = () => {
 
   const handlePixPayment = () => {
     // Redireciona para a página de pagamento via Pix
-    router.push(`/pix?total=${totalWithDiscountRounded}`);
+    router.push(`/pix-checkout`);
   };
 
   return (

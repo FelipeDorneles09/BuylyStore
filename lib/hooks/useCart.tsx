@@ -11,21 +11,35 @@ interface CartItem {
 
 interface CartStore {
   cartItems: CartItem[];
+  totalPrice: number;
   addItem: (item: CartItem) => void;
-  removeItem: (idToRemove: string, color?: string, size?: string) => void; // Torne color e size opcionais
+  removeItem: (idToRemove: string, color?: string, size?: string) => void;
   increaseQuantity: (idToIncrease: string, color: string, size: string) => void;
   decreaseQuantity: (idToDecrease: string, color: string, size: string) => void;
   clearCart: () => void;
+  calculateTotalPrice: (cartItems: CartItem[]) => number;
 }
+
 const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       cartItems: [],
+      totalPrice: 0,
+
+      // Função para calcular o preço total
+      calculateTotalPrice: (cartItems: CartItem[]) => {
+        return cartItems.reduce(
+          (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
+          0
+        );
+      },
+
+      // Adicionar item ao carrinho
       addItem: (data: CartItem) => {
         const { item, quantity, color, size } = data;
         const currentItems = get().cartItems;
 
-        // Verificar se o item com a mesma combinação de produto, cor e tamanho já existe
+        // Verificar se o item já existe no carrinho
         const isExisting = currentItems.find(
           (cartItem) =>
             cartItem.item._id === item._id &&
@@ -34,14 +48,18 @@ const useCart = create(
         );
 
         if (isExisting) {
-          return toast("Item already in cart", { icon: "🛒​" });
+          return toast("Item já está no carrinho", { icon: "🛒​" });
         }
 
-        // Adicionar o novo item com suas variações
-        set({ cartItems: [...currentItems, { item, quantity, color, size }] });
-        toast.success("Item added to cart", { icon: "🛒​" });
+        // Adicionar o novo item ao carrinho
+        const newCartItems = [...currentItems, { item, quantity, color, size }];
+        const newTotalPrice = get().calculateTotalPrice(newCartItems);
+
+        set({ cartItems: newCartItems, totalPrice: newTotalPrice });
+        toast.success("Item adicionado ao carrinho", { icon: "🛒​" });
       },
 
+      // Remover item do carrinho
       removeItem: (idToRemove: string, color?: string, size?: string) => {
         let newCartItems = get().cartItems;
 
@@ -62,10 +80,13 @@ const useCart = create(
           );
         }
 
-        set({ cartItems: newCartItems });
-        toast.success("Item removed from cart", { icon: "🛒​" });
+        const newTotalPrice = get().calculateTotalPrice(newCartItems);
+
+        set({ cartItems: newCartItems, totalPrice: newTotalPrice });
+        toast.success("Item removido do carrinho", { icon: "🛒​" });
       },
 
+      // Aumentar a quantidade de um item
       increaseQuantity: (idToIncrease: string, color: string, size: string) => {
         const newCartItems = get().cartItems.map((cartItem) =>
           cartItem.item._id === idToIncrease &&
@@ -75,10 +96,13 @@ const useCart = create(
             : cartItem
         );
 
-        set({ cartItems: newCartItems });
-        toast.success("Item quantity increased");
+        const newTotalPrice = get().calculateTotalPrice(newCartItems);
+
+        set({ cartItems: newCartItems, totalPrice: newTotalPrice });
+        toast.success("Quantidade aumentada");
       },
 
+      // Diminuir a quantidade de um item
       decreaseQuantity: (idToDecrease: string, color: string, size: string) => {
         const newCartItems = get().cartItems.map((cartItem) =>
           cartItem.item._id === idToDecrease &&
@@ -93,18 +117,21 @@ const useCart = create(
           (cartItem) => cartItem.quantity > 0
         );
 
+        const newTotalPrice = get().calculateTotalPrice(filteredItems);
+
         // Atualizar o carrinho com os itens restantes
-        set({ cartItems: filteredItems });
+        set({ cartItems: filteredItems, totalPrice: newTotalPrice });
 
         // Caso a quantidade seja 1 após a redução, removemos o item
         if (filteredItems.length < newCartItems.length) {
-          toast.success("Item removed from cart", { icon: "🛒​" });
+          toast.success("Item removido do carrinho", { icon: "🛒​" });
         } else {
-          toast.success("Item quantity decreased");
+          toast.success("Quantidade diminuída");
         }
       },
 
-      clearCart: () => set({ cartItems: [] }),
+      // Limpar o carrinho
+      clearCart: () => set({ cartItems: [], totalPrice: 0 }),
     }),
     {
       name: "cart-storage",

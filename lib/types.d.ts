@@ -35,6 +35,10 @@ type OrderType = {
   products: [OrderItemType];
   shippingRate: string;
   totalAmount: number;
+  status: "pendente" | "pago" | "enviado" | "entregue" | "cancelado" | string;
+  paymentMethod: "stripe" | "pix" | string;
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
 };
 
 type OrderItemType = {

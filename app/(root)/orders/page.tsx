@@ -18,14 +18,43 @@ const Orders = async () => {
 
       <div className="flex gap-10 flex-col">
         {orders?.map((order: OrderType) => (
-          <div className="flex flex-col gap-8 p-4 hover:bg-grey-1">
-            <div className="flex gap-20 max-md:flex-col max-md:gap-3">
-              <p className="text-base-bold">ID do pedido: {order._id}</p>
-              <p className="text-base-bold">Total: R${order.totalAmount}</p>
+          <div
+            key={order._id}
+            className="flex flex-col gap-8 p-4 hover:bg-grey-1 border border-grey-1 rounded-lg"
+          >
+            <div className="flex justify-between max-md:flex-col max-md:gap-3">
+              <div className="flex flex-col gap-2">
+                <p className="text-base-bold">ID do pedido: {order._id}</p>
+                <p className="text-base-bold">Total: R${order.totalAmount}</p>
+              </div>
+              <div className="flex flex-col items-end gap-2">
+                <p className="text-base-medium">
+                  Método:{" "}
+                  <span
+                    className={`text-base-bold ${(order.paymentMethod || "stripe") === "pix" ? "text-green-500" : "text-blue-500"}`}
+                  >
+                    {(order.paymentMethod || "stripe") === "pix"
+                      ? "PIX"
+                      : "Stripe"}
+                  </span>
+                </p>
+                <p className="text-base-medium">
+                  Status:{" "}
+                  <span
+                    className={`text-base-bold ${(order.status || "pago") === "pago" ? "text-green-500" : "text-amber-500"}`}
+                  >
+                    {(order.status || "pago") === "pago"
+                      ? "Pago"
+                      : (order.status || "pago") === "pendente"
+                        ? "Pendente"
+                        : order.status}
+                  </span>
+                </p>
+              </div>
             </div>
             <div className="flex flex-col gap-5">
               {order.products.map((orderItem: OrderItemType) => (
-                <div className="flex gap-4">
+                <div key={orderItem._id} className="flex gap-4">
                   <Image
                     src={orderItem.product.media[0]}
                     alt={orderItem.product.title}
@@ -59,7 +88,7 @@ const Orders = async () => {
                     <p className="text-small-medium">
                       Preço da Unidade:{" "}
                       <span className="text-small-bold">
-                        {orderItem.product.price}
+                        R${orderItem.product.price}
                       </span>
                     </p>
                     <p className="text-small-medium">

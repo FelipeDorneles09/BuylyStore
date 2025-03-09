@@ -52,13 +52,19 @@ export const getSearchedProducts = async (query: string) => {
 };
 
 export const getOrders = async (customerId: string) => {
-  const orders = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/orders/customers/${customerId}`,
-    {
-      cache: "no-store",
-    }
-  );
-  return await orders.json();
+  try {
+    const orders = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/orders/customers/${customerId}`,
+      {
+        cache: "no-store",
+      }
+    );
+    const data = await orders.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch orders:", error);
+    return []; // Retornando array vazio como fallback para evitar erros
+  }
 };
 
 export const getRelatedProducts = async (productId: string) => {
