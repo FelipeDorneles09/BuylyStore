@@ -34,14 +34,14 @@ const Orders = async () => {
                     className={`text-base-bold ${(order.paymentMethod || "stripe") === "pix" ? "text-green-500" : "text-blue-500"}`}
                   >
                     {(order.paymentMethod || "stripe") === "pix"
-                      ? "PIX"
-                      : "Stripe"}
+                      ? "Pix"
+                      : "Cartão"}
                   </span>
                 </p>
                 <p className="text-base-medium">
                   Status:{" "}
                   <span
-                    className={`text-base-bold ${(order.status || "pago") === "pago" ? "text-green-500" : "text-amber-500"}`}
+                    className={`text-base-bold ${(order.status || "pago") === "pago" ? "text-green-500" : "text-red-500"}`}
                   >
                     {(order.status || "pago") === "pago"
                       ? "Pago"

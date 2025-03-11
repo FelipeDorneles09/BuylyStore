@@ -16,7 +16,7 @@ const PixCheckoutPage = () => {
   const descontoPercentual = 0.05;
   const descontoValor = totalPrice * descontoPercentual;
   const totalComDesconto = totalPrice - descontoValor;
-  const totalFinal = totalComDesconto + FRETE;
+  const totalFinal = Number((totalComDesconto + FRETE).toFixed(2));
 
   const [formData, setFormData] = useState({
     name: "",
@@ -150,9 +150,7 @@ const PixCheckoutPage = () => {
 
       if (response.ok) {
         // Redirecionar para a página do PIX com o ID do pedido e valor
-        router.push(
-          `/pix?orderId=${data.orderId}&total=${totalFinal.toFixed(2)}`
-        );
+        router.push(`/pix?orderId=${data.orderId}&total=${totalFinal}`);
       } else {
         toast.error("Erro ao processar pagamento");
       }
