@@ -4,7 +4,7 @@ import Loader from "@/app/components/Loader";
 import ProductCard from "@/app/components/ProductCard";
 import { getProductsDetails } from "@/lib/actions/actions";
 import { useUser } from "@clerk/nextjs";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Wishlist = () => {
   const { user } = useUser();
@@ -59,18 +59,18 @@ const Wishlist = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="px-10 max-sm-plus:px-0 max-sm-plus:py-2 py-5 ">
-      <p className="text-heading3-bold my-10 max-sm-plus:px-2">
-        Lista de Desejos
-      </p>
-      {wishlist.length === 0 && <p>Nenhum item na Lista de Desejos</p>}
+    <div className="px-4 sm:px-6 md:px-10 py-4 sm:py-5">
+      <p className="text-heading3-bold my-6 sm:my-10">Lista de Desejos</p>
+      {wishlist.length === 0 && (
+        <p className="text-center text-gray-500 my-8">
+          Nenhum item na Lista de Desejos
+        </p>
+      )}
 
-      <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
+      {/* Grid de produtos da lista de desejos - ajustado para melhor responsividade */}
+      <div className="mt-6 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {wishlist.map((product) => (
-          <div
-            className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
-            key={product._id}
-          >
+          <div className="w-full" key={product._id}>
             <ProductCard product={product} />
           </div>
         ))}

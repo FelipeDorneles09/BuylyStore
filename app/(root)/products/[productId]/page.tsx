@@ -33,20 +33,19 @@ const ProductDetails = async ({
         <ProductInfo productInfo={productDetails} />
       </div>
 
-      <div className="flex flex-col items-center py-4 px-10 max-md:px-3">
+      <div className="flex flex-col items-center py-4 px-4 sm:px-6 md:px-10">
         <p className="text-heading3-bold">Produtos Relacionados</p>
-        <div className="mt-8 flex flex-wrap gap-6 sm:gap-10 md:gap-14 justify-center">
+        {/* Grid de produtos relacionados - ajustado para melhor responsividade */}
+        <div className="mt-8 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {relatedProducts?.map((product: ProductType) => (
-            <div
-              className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
-              key={product._id}
-            >
+            <div className="w-full" key={product._id}>
               <ProductCard product={product} />
             </div>
           ))}
         </div>
       </div>
-      <div className="mt-16 mx-16 lg:mx-32">
+
+      <div className="mt-16 mx-4 sm:mx-8 md:mx-16 lg:mx-32">
         <p className="text-heading3-bold">Avaliações dos Clientes</p>
         {reviews.length === 0 ? (
           <p>No reviews yet.</p>

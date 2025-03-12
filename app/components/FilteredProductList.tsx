@@ -42,12 +42,10 @@ const FilteredProductList = ({ products }: FilteredProductListProps) => {
         </select>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-6 max-sm-plus:gap-4 max-sm:gap-10 md:gap-14 justify-center">
+      {/* Grid de produtos - ajustado para melhor responsividade */}
+      <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {sortedProducts.map((product) => (
-          <div
-            className="w-5/12 sm:w-1/3 md:w-1/3 lg:w-1/5 bg-gray-50"
-            key={product._id}
-          >
+          <div className="w-full" key={product._id}>
             <ProductCard product={product} />
           </div>
         ))}

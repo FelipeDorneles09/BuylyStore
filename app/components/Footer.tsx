@@ -27,7 +27,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#Products`}
+                  href={`${process.env.NEXT_PUBLIC_SITE_URL}#Product`}
                   className="hover:underline text-gray-300"
                 >
                   Produtos
