@@ -106,25 +106,28 @@ const CategoriesDisplay = ({ categories }: CategoriesDisplayProps) => {
               key={category._id}
             >
               <Link href={`/categories/${category._id}`}>
-                <div className="relative overflow-hidden max-sm-plus:min-h-[260px] min-h-[320px] lg:min-h-[500px] w-full border-grey-2 border group">
+                <div className="relative overflow-hidden max-sm-plus:min-h-[260px] min-h-[320px] lg:min-h-[500px] w-full border-blue-200 border rounded-lg shadow-lg group">
                   <Image
                     src={category.image}
                     alt={category.title}
                     layout="fill"
                     objectFit="cover"
-                    className="transition-transform duration-300 ease-in-out border border-white transform hover:scale-105 hover:filter hover:brightness-110 hover:contrast-110 hover:saturate-110"
+                    className="transition-transform duration-500 ease-in-out transform hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-black bg-opacity-30 pointer-events-none group-hover:bg-opacity-50 transition duration-300"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white text-2xl font-semibold max-w-[394px] w-full">
-                    <h3 className="text-shadow-lg font-oswald text-[24px] uppercase xl:text-[40px] lg:text-[36px] md:text-[28px]">
+                  <div className="absolute inset-0 bg-black bg-opacity-20 pointer-events-none group-hover:bg-opacity-40 transition duration-300"></div>
+
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white w-full max-w-[394px]">
+                    <h3 className="font-oswald text-[24px] uppercase xl:text-[40px] lg:text-[36px] md:text-[28px] font-bold tracking-wide">
                       {category.title}
                     </h3>
 
-                    <button className="mt-2 w-3/5 bg-red-600 hover:bg-gray-900 text-white font-medium uppercase py-2 px-4 transition-all duration-300 opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0">
+                    <button className="mt-4 w-3/5 bg-blue-600 hover:bg-blue-700 text-white font-medium uppercase py-3 px-4 rounded-md transition-all duration-300 transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 shadow-md">
                       Confira
                     </button>
                   </div>
+
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </div>
               </Link>
             </div>

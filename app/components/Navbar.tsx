@@ -197,9 +197,12 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Barra de Pesquisa Melhorada */}
+      {/* Barra de Pesquisa Modificada - Sem botão, usando ícone clicável */}
       <div className="flex gap-2 border border-gray-200 px-4 py-2 items-center rounded-full bg-white shadow-sm transition-all focus-within:shadow-md focus-within:border-blue-300">
-        <Search className="h-4 w-4 text-gray-400" />
+        <Search
+          className="h-4 w-4 text-gray-400 hover:text-blue-600 cursor-pointer transition-colors"
+          onClick={handleSearch}
+        />
         <input
           className="outline-none w-full max-sm:max-w-[120px] text-gray-700 placeholder:text-gray-400"
           placeholder="Pesquisar produtos..."
@@ -207,13 +210,6 @@ const Navbar = () => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button
-          disabled={query.trim() === ""}
-          onClick={handleSearch}
-          className="text-blue-600 text-sm font-medium disabled:text-gray-300 transition-colors"
-        >
-          Buscar
-        </button>
       </div>
 
       <div className="flex gap-4 items-center relative">
