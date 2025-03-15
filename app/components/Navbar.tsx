@@ -317,7 +317,25 @@ const Navbar = () => {
               appearance={{
                 elements: {
                   userButtonAvatarBox:
-                    "h-10 w-10 rounded-full border border-gray-200 shadow-sm hover:border-blue-300 transition-colors",
+                    "h-10 w-10 rounded-full border-2 border-blue-200 shadow-sm hover:border-blue-400 transition-all duration-200",
+                  userButtonBox: "focus:shadow-outline-blue hover:bg-blue-50",
+                  userButtonTrigger: "rounded-full p-0.5",
+                  userButtonPopoverCard:
+                    "shadow-lg border border-gray-100 rounded-lg overflow-hidden",
+                  userButtonPopoverActionButtonIcon: "text-blue-600",
+                  userButtonPopoverActionButtonText:
+                    "text-gray-700 font-medium",
+                  userButtonPopoverFooter: "border-t border-gray-100",
+                  userPreviewMainIdentifier: "text-gray-800 font-medium",
+                  userPreviewSecondaryIdentifier: "text-gray-500 text-sm",
+                },
+                variables: {
+                  colorPrimary: "#2563eb", // azul que combina com o esquema do site
+                  colorBackground: "#ffffff",
+                  colorText: "#374151",
+                  colorTextSecondary: "#6b7280",
+                  fontFamily: "inherit",
+                  borderRadius: "0.5rem",
                 },
               }}
             />
